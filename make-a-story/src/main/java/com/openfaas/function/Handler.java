@@ -109,20 +109,20 @@ public class Handler extends com.openfaas.model.AbstractHandler {
         String title = "";
         String category = "";
         String details = "";
-        // try
-        // {
-        //     System.out.println("got in");
-        //     JsonObject jobj = new Gson().fromJson(body, JsonObject.class);
-        //     System.out.println("read jobj");
-        //     author = jobj.get("author").getAsString();
-        //     title = jobj.get("title").getAsString();
-        //     category = jobj.get("category").getAsString();
-        //     details = jobj.get("details").getAsString();
-        // }
-        // catch (Exception e)
-        // {
-        //     e.printStackTrace();
-        // }
+        try
+        {
+            System.out.println("got in");
+            JsonObject jobj = new Gson().fromJson(body, JsonObject.class);
+            System.out.println("read jobj");
+            author = jobj.get("author").getAsString();
+            title = jobj.get("title").getAsString();
+            category = jobj.get("category").getAsString();
+            details = jobj.get("details").getAsString();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
 
 
         Connection database = null;
