@@ -109,8 +109,8 @@ public class Handler extends com.openfaas.model.AbstractHandler {
         String title = "";
         String category = "";
         String details = "";
-        try
-        {
+        // try
+        // {
             System.out.println("got in");
             JsonObject jobj = new Gson().fromJson(body, JsonObject.class);
             System.out.println("read jobj");
@@ -118,20 +118,21 @@ public class Handler extends com.openfaas.model.AbstractHandler {
             title = jobj.get("title").getAsString();
             category = jobj.get("category").getAsString();
             details = jobj.get("details").getAsString();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+        // }
+        // catch (Exception e)
+        // {
+        //     e.printStackTrace();
+        // }
 
 
         Connection database = null;
-        try {
+        // try {
             database = getConnection();
             createTable(database);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        // } catch (Exception e) {
+        //     e.printStackTrace();
+
+        // }
         LocalDateTime timestamp = LocalDateTime.now();
         Story newStory = new Story();
         newStory.title = title;
@@ -139,13 +140,13 @@ public class Handler extends com.openfaas.model.AbstractHandler {
         newStory.category = category;
         newStory.details = details;
         newStory.timestamp = timestamp;
-        try{
+        //try{
             addData(newStory, database);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+        // }
+        // catch (Exception e)
+        // {
+        //     e.printStackTrace();
+        // }
 	    return res;
     }
 }
