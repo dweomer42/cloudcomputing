@@ -100,7 +100,7 @@ public class Handler extends com.openfaas.model.AbstractHandler {
     statement.close();
   }
 
-    public IResponse Handle(IRequest req) {
+    public IResponse Handle(IRequest req) throws SQLException, IOException, JsonParseException {
         Response res = new Response();
 	      res.setBody("Hello, world!");
         String body = req.getBody();
@@ -112,7 +112,7 @@ public class Handler extends com.openfaas.model.AbstractHandler {
         // try
         // {
             System.out.println("got in");
-            JsonObject jobj = new Gson().fromJson(body, JsonObject.class).throws(Exception);
+            JsonObject jobj = new Gson().fromJson(body, JsonObject.class);
             System.out.println("read jobj");
             author = jobj.get("author").getAsString();
             title = jobj.get("title").getAsString();
@@ -127,7 +127,7 @@ public class Handler extends com.openfaas.model.AbstractHandler {
 
         Connection database = null;
         // try {
-            database = getConnection().throws(SQLException);
+            database = getConnection();
             createTable(database);
         // } catch (Exception e) {
         //     e.printStackTrace();
