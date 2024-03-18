@@ -112,7 +112,7 @@ public class Handler extends com.openfaas.model.AbstractHandler {
         // try
         // {
             System.out.println("got in");
-            JsonObject jobj = new Gson().fromJson(body, JsonObject.class);
+            JsonObject jobj = new Gson().fromJson(body, JsonObject.class).throws(Exception);
             System.out.println("read jobj");
             author = jobj.get("author").getAsString();
             title = jobj.get("title").getAsString();
@@ -127,7 +127,7 @@ public class Handler extends com.openfaas.model.AbstractHandler {
 
         Connection database = null;
         // try {
-            database = getConnection();
+            database = getConnection().throws(SQLException);
             createTable(database);
         // } catch (Exception e) {
         //     e.printStackTrace();
