@@ -100,7 +100,7 @@ public class Handler extends com.openfaas.model.AbstractHandler {
     statement.close();
   }
 
-    public IResponse Handle(IRequest req) throws SQLException, IOException {
+    public IResponse Handle(IRequest req){
         Response res = new Response();
 	      res.setBody("Hello, world!");
         String body = req.getBody();
