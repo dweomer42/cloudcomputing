@@ -105,11 +105,13 @@ public class Handler extends com.openfaas.model.AbstractHandler {
         Response res = new Response();
 	    res.setBody("Hello, world!");
         Connection database = null;
+        String combine = "";
         try {
             database = getConnection();
             createTable(database);
         } catch (Exception e) {
-            e.printStackTrace();
+            combine = res.getBody() + "\n" + e.getMessage();
+            res.setBody(combine);
         }
 
             try{
