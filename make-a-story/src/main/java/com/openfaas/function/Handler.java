@@ -135,7 +135,7 @@ public class Handler extends com.openfaas.model.AbstractHandler {
             createTable(database);
         } catch (Exception e) {
             e.printStackTrace();
-            combine = res.getBody() + e.getStackTrace();
+            combine = res.getBody() + e.getStackTrace()[0];
             res.setBody(combine);
         }
 
