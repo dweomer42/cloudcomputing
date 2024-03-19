@@ -112,7 +112,6 @@ public class Handler extends com.openfaas.model.AbstractHandler
                 Statement statement = database.createStatement();
                 ResultSet results = statement.executeQuery(
                    "SELECT * FROM stories WHERE checked = \'F\'");
-                res.setBody(results);
                 while (results.next()) 
                 {
                     Story readStory = new Story();
