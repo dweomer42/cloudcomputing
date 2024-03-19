@@ -112,6 +112,7 @@ public class Handler extends com.openfaas.model.AbstractHandler
                 Statement statement = database.createStatement();
                 ResultSet results = statement.executeQuery(
                    "SELECT * FROM stories WHERE checked = \'F\'");
+                count = 0;
                 while (results.next()) 
                 {
                     Story readStory = new Story();
@@ -122,9 +123,17 @@ public class Handler extends com.openfaas.model.AbstractHandler
                     stories.add(readStory);
                     idsChecked.add(results.getInt("id"));
                     //statement.executeQuery("UPDATE stories SET checked = \'T\' WHERE id = " + results.getInt("id"));
+                    count++;
+                    if(count > 100)
+                    {
+                        combine = res.getBody() + "\nWe're getting stuck";
+                        res.setBody(combine);
+                        return res;
+                    }
                 }
 
                 results = statement.executeQuery("SELECT * FROM users");
+                count = 0;
                 while (results.next())
                 {
                     User readUser = new User();
@@ -132,6 +141,13 @@ public class Handler extends com.openfaas.model.AbstractHandler
                     readUser.email = results.getString("email");
                     readUser.interest = results.getString("interest");
                     users.add(readUser);
+                    count++;
+                    if(count > 100)
+                    {
+                        combine = res.getBody() + "\nWe're getting stuck";
+                        res.setBody(combine);
+                        return res;
+                    }
                 }
 
                 statement.close();
