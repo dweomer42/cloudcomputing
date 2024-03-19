@@ -125,6 +125,7 @@ public class Handler extends com.openfaas.model.AbstractHandler {
         {
             //e.printStackTrace();
             System.err.println("Failed to read json");
+            res.setBody("Failed to read json");
         }
 
 
