@@ -75,7 +75,7 @@ public class Handler extends com.openfaas.model.AbstractHandler
             database = getConnection();
             createTable(database);
         } catch (Exception e) {
-            combine = res.getBody() + "\n" + e.getMessage();
+            combine = res.getBody() + "\nFailing at line 78 with message:\n" + e.getMessage();
             res.setBody(combine);
             return res;
         }
@@ -124,12 +124,6 @@ public class Handler extends com.openfaas.model.AbstractHandler
                     idsChecked.add(results.getInt("id"));
                     //statement.executeQuery("UPDATE stories SET checked = \'T\' WHERE id = " + results.getInt("id"));
                     count++;
-                    if(count > 100)
-                    {
-                        combine = res.getBody() + "\nWe're getting stuck";
-                        res.setBody(combine);
-                        return res;
-                    }
                 }
 
                 results = statement.executeQuery("SELECT * FROM users");
@@ -142,12 +136,6 @@ public class Handler extends com.openfaas.model.AbstractHandler
                     readUser.interest = results.getString("interest");
                     users.add(readUser);
                     count++;
-                    if(count > 100)
-                    {
-                        combine = res.getBody() + "\nWe're getting stuck";
-                        res.setBody(combine);
-                        return res;
-                    }
                 }
 
                 statement.close();
@@ -201,6 +189,7 @@ public class Handler extends com.openfaas.model.AbstractHandler
                 }
                 Statement secondStatement = database.createStatement();
                 for (Integer id : idsChecked) {
+                    combine = res.getBody() + "\n" + id;
                     secondStatement.executeQuery("UPDATE stories SET checked = \'T\' WHERE id = " + id);
                 }
                 secondStatement.close();
@@ -209,7 +198,7 @@ public class Handler extends com.openfaas.model.AbstractHandler
 
             }
             catch( Exception error){
-                combine = res.getBody() + "\n" + error.getMessage();
+                combine = res.getBody() + "\nFailing on line 201:\n" + error.getMessage();
                 res.setBody(combine);
                 System.out.println("this is just to make it build again");
                 return res;
