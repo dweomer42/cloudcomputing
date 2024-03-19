@@ -92,7 +92,7 @@ public class Handler extends com.openfaas.model.AbstractHandler {
      statement.setString(2, author);
      statement.setString(3, category);
      statement.setString(4, details);
-     statement.setString(5, "False");
+     statement.setString(5, "F");
      statement.setObject(6, timestamp);
     // Loop over input data, inserting it into table...
  
