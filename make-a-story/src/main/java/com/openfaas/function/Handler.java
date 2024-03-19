@@ -103,7 +103,7 @@ public class Handler extends com.openfaas.model.AbstractHandler {
         Response res = new Response();
 	      res.setBody("Hello, world!");
         String body = req.getBody();
-        res.setBody(res.getBody().String() + req.getBody());
+        res.setBody(res.getBody().string() + req.getBody());
         // String author = "";
         // String title = "";
         // String category = "";
