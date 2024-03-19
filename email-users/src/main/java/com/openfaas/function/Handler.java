@@ -69,12 +69,15 @@ public class Handler extends com.openfaas.model.AbstractHandler
     {
         Response res = new Response();
 	    res.setBody("Hello, world!");
+        String combine = "";
         Connection database = null;
         try {
             database = getConnection();
             createTable(database);
         } catch (Exception e) {
-            e.printStackTrace();
+            combine = res.getBody() + "\n" + e.getMessage();
+            res.setBody(combine);
+            return res;
         }
 
         String from = "jharros73@gmail.com";
@@ -176,7 +179,9 @@ public class Handler extends com.openfaas.model.AbstractHandler
                         }
                         catch (Exception e) 
                         {
-                            e.printStackTrace();
+                            combine = res.getBody() + "\n" + e.getMessage();
+                            res.setBody(combine);
+                            return res;
                         }  
                 }
                 Statement secondStatement = database.createStatement();
@@ -189,7 +194,9 @@ public class Handler extends com.openfaas.model.AbstractHandler
 
             }
             catch( Exception error){
-                error.printStackTrace();
+                combine = res.getBody() + "\n" + error.getMessage();
+                res.setBody(combine);
+                return res;
             }
 	    return res;
     }
