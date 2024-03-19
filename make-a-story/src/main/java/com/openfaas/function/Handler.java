@@ -127,53 +127,30 @@ public class Handler extends com.openfaas.model.AbstractHandler {
           combine = res.getBody() + "\ndidn't work";
           res.setBody(combine);
         }
-        // try
-        // {
-        //     System.err.println("got in");
-        //     combine = res.getBody() + "\ngot in";
-        //     res.setBody(combine);
-        //     Gson gson = new Gson();
-        //     newStory = gson.fromJson(req.getBody(), Story.class);
-        //     // JsonObject jobj = gson.fromJson(req.getBody(), JsonObject.class);
-        //     System.err.println("read jobj");
-        //     combine = res.getBody() + "\nread jobj";
-        //     res.setBody(combine);
-        //     // author = jobj.get("author").getAsString();
-        //     // title = jobj.get("title").getAsString();
-        //     // category = jobj.get("category").getAsString();
-        //     // details = jobj.get("details").getAsString();
-        // }
-        // catch (Exception e)
-        // {
-        //     //e.printStackTrace();
-        //     String errorStr = ExceptionUtils.getStackTrace(e);
-        //     //System.err.println("Failed to read json");
-        //     combine = res.getBody() + "\nFailed to read json\n" + errorStr;
-        //     res.setBody(combine);
-        // }
 
 
         // Connection database = null;
-        // try {
-        //     database = getConnection();
-        //     createTable(database);
-        // } catch (Exception e) {
-        //     e.printStackTrace();
-
-        // }
+        try {
+            database = getConnection();
+            createTable(database);
+        } catch (Exception e) {
+            e.printStackTrace();
+            combine = res.getBody() + "\ndidn't work";
+            res.setBody(combine);
+        }
 
         newStory.title = title;
         newStory.author = author;
         newStory.category = category;
         newStory.details = details;
-        // //res.setBody(newStory.title);
-        // try{
-        //     addData(newStory, database);
-        // }
-        // catch (Exception e)
-        // {
-        //     e.printStackTrace();
-        // }
+        //res.setBody(newStory.title);
+        try{
+            addData(newStory, database);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
 	    return res;
     }
 }
