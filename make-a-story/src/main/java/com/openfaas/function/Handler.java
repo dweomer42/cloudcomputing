@@ -101,19 +101,19 @@ public class Handler extends com.openfaas.model.AbstractHandler {
       statement.executeUpdate();
 
     statement.close();
-    // try
-    // {
-    //   HttpClient client = HttpClient.newHttpClient();
-    //   HttpRequest request = HttpRequest.newBuilder()
-    //   .uri(URI.create("http://127.0.0.1:8080/function/email-users"))
-    //   .POST(HttpRequest.BodyPublishers.noBody())
-    //   .build();
-    //   client.send(request, HttpResponse.BodyHandlers.ofString());
-    // }
-    // catch (Exception e)
-    // {
+    try
+    {
+      HttpClient client = HttpClient.newHttpClient();
+      HttpRequest request = HttpRequest.newBuilder()
+      .uri(URI.create("http://127.0.0.1:8080/function/email-users"))
+      .POST(HttpRequest.BodyPublishers.noBody())
+      .build();
+      client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
+    }
+    catch (Exception e)
+    {
 
-    // }
+    }
   }
 
     public IResponse Handle(IRequest req){
