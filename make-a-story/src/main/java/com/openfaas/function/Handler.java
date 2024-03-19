@@ -142,7 +142,7 @@ public class Handler extends com.openfaas.model.AbstractHandler {
         // newStory.author = author;
         // newStory.category = category;
         // newStory.details = details;
-        res.setBody(newStory.title);
+        //res.setBody(newStory.title);
         try{
             addData(newStory, database);
         }
