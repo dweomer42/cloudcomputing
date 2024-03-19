@@ -9,7 +9,7 @@ functions:
     image: sc20jh/make-a-story:latest
   email-users:
     lang: java11
-    handler: ./make-a-story
+    handler: ./email-users
     image: sc20jh/email-users:latest
   generate-summary:
     lang: java11
