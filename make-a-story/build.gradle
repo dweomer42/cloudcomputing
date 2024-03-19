@@ -13,6 +13,9 @@ dependencies {
 
     implementation files('mssql-jdbc-12.6.1.jre11.jar')
 
+    // https://mvnrepository.com/artifact/org.springframework/spring-jdbc
+    implementation group: 'org.springframework', name: 'spring-jdbc', version: '6.1.5'
+
 
     implementation 'com.google.code.gson:gson:2.8.5'
 
