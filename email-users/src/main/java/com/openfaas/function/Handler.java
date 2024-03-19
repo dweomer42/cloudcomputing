@@ -102,7 +102,6 @@ public class Handler extends com.openfaas.model.AbstractHandler
             };
             Session session = Session.getInstance(properties, authenticator);
             
-        Session session = Session.getDefaultInstance(properties);  
       
         List<Story> stories = new ArrayList<Story>();
         List<User> users = new ArrayList<User>();
