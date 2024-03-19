@@ -10,7 +10,6 @@ import java.util.*;
 import jakarta.mail.*;  
 import jakarta.mail.internet.*;  
 import jakarta.activation.*;  
-import java.net.PasswordAuthentication;
 
 class User
 {
