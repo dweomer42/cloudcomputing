@@ -165,6 +165,7 @@ public class Handler extends com.openfaas.model.AbstractHandler {
         catch (Exception e)
         {
           combine = res.getBody() + "\n" + e.getMessage();
+          System.out.println("This is to make it build again");
           res.setBody(combine);
         }
 	    return res;
