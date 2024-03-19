@@ -187,6 +187,7 @@ public class Handler extends com.openfaas.model.AbstractHandler
                 Statement secondStatement = database.createStatement();
                 for (Integer id : idsChecked) {
                     combine = res.getBody() + "\n" + id;
+                    res.setBody(combine);
                     secondStatement.executeQuery("UPDATE stories SET checked = \'T\' WHERE id = " + id);
                 }
                 secondStatement.close();
