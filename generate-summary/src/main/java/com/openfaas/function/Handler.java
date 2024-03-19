@@ -112,7 +112,6 @@ public class Handler extends com.openfaas.model.AbstractHandler {
             e.printStackTrace();
         }
 
-            context.getLogger().log(Level.INFO, "SQL Changes: " + new Gson().toJson(changes));
             try{
                 Statement statement = database.createStatement();
                 ResultSet results = statement.executeQuery("SELECT DISTINCT category FROM stories");
