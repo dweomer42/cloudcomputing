@@ -108,7 +108,7 @@ public class Handler extends com.openfaas.model.AbstractHandler {
       .uri(URI.create("http://127.0.0.1:8080/function/email-users"))
       .POST(HttpRequest.BodyPublishers.noBody())
       .build();
-      client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
+      client.send(request, HttpResponse.BodyHandlers.ofString());
     }
     catch (Exception e)
     {
