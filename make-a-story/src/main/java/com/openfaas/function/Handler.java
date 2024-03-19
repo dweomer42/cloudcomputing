@@ -113,12 +113,20 @@ public class Handler extends com.openfaas.model.AbstractHandler {
         String details = "";
         Story newStory = new Story();
         Map<String, String> query = req.getQuery();
-        author = query.get("author");
-        title = query.get("title");
-        category = query.get("category");
-        details = query.get("details");
-        combine = res.getBody() + author + title + category + details;
-        res.setBody(combine);
+        try
+        {
+          author = query.get("author");
+          title = query.get("title");
+          category = query.get("category");
+          details = query.get("details");
+          combine = res.getBody() + author + title + category + details;
+          res.setBody(combine);
+        }
+        catch(Exception e)
+        {
+          combine = res.getBody() + "\ndidn't work";
+          res.setBody(combine);
+        }
         // try
         // {
         //     System.err.println("got in");
