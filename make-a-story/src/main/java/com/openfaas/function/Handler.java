@@ -108,11 +108,12 @@ public class Handler extends com.openfaas.model.AbstractHandler {
         String title = "";
         String category = "";
         String details = "";
+        Story newStory = new Story();
         try
         {
             System.err.println("got in");
             Gson gson = new Gson();
-            Story newStory = gson.fromJson(req.getBody(), Story.class);
+            newStory = gson.fromJson(req.getBody(), Story.class);
             // JsonObject jobj = gson.fromJson(req.getBody(), JsonObject.class);
             System.err.println("read jobj");
             // author = jobj.get("author").getAsString();
