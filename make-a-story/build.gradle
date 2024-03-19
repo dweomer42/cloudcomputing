@@ -23,7 +23,6 @@ dependencies {
     implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
 
 
-
     // SQL driver
     // https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc8
     implementation group: 'com.oracle.database.jdbc', name: 'ojdbc8', version: '23.3.0.23.09'
@@ -32,14 +31,6 @@ dependencies {
 
     // https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc
     implementation group: 'com.microsoft.sqlserver', name: 'mssql-jdbc', version: '12.6.1.jre11'
-
-    // https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc
-    //implementation group: 'org.xerial', name: 'sqlite-jdbc', version: '3.45.2.0'
-
-
-    // https://mvnrepository.com/artifact/com.mysql/mysql-connector-j
-    //implementation group: 'com.mysql', name: 'mysql-connector-j', version: '8.3.0'
-
 
 
 
