@@ -11,5 +11,11 @@ functions:
     lang: java11
     handler: ./make-a-story
     image: sc20jh/email-users:latest
+  generate-summary:
+    lang: java11
+    handler: ./generate-summary
+    image: sc20jh/generate-summary:latest
+
+  
 
 

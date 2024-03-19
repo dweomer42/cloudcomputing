@@ -151,7 +151,8 @@ public class Handler extends com.openfaas.model.AbstractHandler {
             }
             catch(Exception e)
             {
-                e.printStackTrace();
+                combine = res.getBody() + "\n" + e.getMessage();
+                res.setBody(combine);
             }
 
 
