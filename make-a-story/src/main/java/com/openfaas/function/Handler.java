@@ -9,8 +9,8 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.io.IOException;
 import com.google.gson.*;
-import org.apache.commons.lang3.exception.ExceptionUtils;
 import java.util.*;
+import java.lang.*;
 
 
 class Story
@@ -124,7 +124,7 @@ public class Handler extends com.openfaas.model.AbstractHandler {
         }
         catch(Exception e)
         {
-          combine = res.getBody() + "\ndidn't work";
+          combine = res.getBody() + e.getStackTrace();
           res.setBody(combine);
         }
 
@@ -135,7 +135,7 @@ public class Handler extends com.openfaas.model.AbstractHandler {
             createTable(database);
         } catch (Exception e) {
             e.printStackTrace();
-            combine = res.getBody() + "\ndidn't work";
+            combine = res.getBody() + e.getStackTrace();
             res.setBody(combine);
         }
 
