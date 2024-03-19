@@ -102,54 +102,54 @@ public class Handler extends com.openfaas.model.AbstractHandler {
     public IResponse Handle(IRequest req){
         Response res = new Response();
 	      res.setBody("Hello, world!");
-        String body = req.getBody();
-        //System.out.println(body);
-        String author = "";
-        String title = "";
-        String category = "";
-        String details = "";
-        Story newStory = new Story();
-        try
-        {
-            System.err.println("got in");
-            Gson gson = new Gson();
-            newStory = gson.fromJson(req.getBody(), Story.class);
-            // JsonObject jobj = gson.fromJson(req.getBody(), JsonObject.class);
-            System.err.println("read jobj");
-            // author = jobj.get("author").getAsString();
-            // title = jobj.get("title").getAsString();
-            // category = jobj.get("category").getAsString();
-            // details = jobj.get("details").getAsString();
-        }
-        catch (Exception e)
-        {
-            //e.printStackTrace();
-            System.err.println("Failed to read json");
-            res.setBody("Failed to read json");
-        }
+        // String body = req.getBody();
+        // //System.out.println(body);
+        // String author = "";
+        // String title = "";
+        // String category = "";
+        // String details = "";
+        // Story newStory = new Story();
+        // try
+        // {
+        //     System.err.println("got in");
+        //     Gson gson = new Gson();
+        //     newStory = gson.fromJson(req.getBody(), Story.class);
+        //     // JsonObject jobj = gson.fromJson(req.getBody(), JsonObject.class);
+        //     System.err.println("read jobj");
+        //     // author = jobj.get("author").getAsString();
+        //     // title = jobj.get("title").getAsString();
+        //     // category = jobj.get("category").getAsString();
+        //     // details = jobj.get("details").getAsString();
+        // }
+        // catch (Exception e)
+        // {
+        //     //e.printStackTrace();
+        //     System.err.println("Failed to read json");
+        //     res.setBody("Failed to read json");
+        // }
 
 
-        Connection database = null;
-        try {
-            database = getConnection();
-            createTable(database);
-        } catch (Exception e) {
-            e.printStackTrace();
+        // Connection database = null;
+        // try {
+        //     database = getConnection();
+        //     createTable(database);
+        // } catch (Exception e) {
+        //     e.printStackTrace();
 
-        }
+        // }
 
-        // newStory.title = title;
-        // newStory.author = author;
-        // newStory.category = category;
-        // newStory.details = details;
-        //res.setBody(newStory.title);
-        try{
-            addData(newStory, database);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+        // // newStory.title = title;
+        // // newStory.author = author;
+        // // newStory.category = category;
+        // // newStory.details = details;
+        // //res.setBody(newStory.title);
+        // try{
+        //     addData(newStory, database);
+        // }
+        // catch (Exception e)
+        // {
+        //     e.printStackTrace();
+        // }
 	    return res;
     }
 }
