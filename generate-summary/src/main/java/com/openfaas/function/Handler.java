@@ -103,7 +103,7 @@ public class Handler extends com.openfaas.model.AbstractHandler {
 
     public IResponse Handle(IRequest req) {
         Response res = new Response();
-	    res.setBody("Hello, world!");
+	    res.setBody("Hello, world! From Generate Summary");
         Connection database = null;
         String combine = "";
         try {
