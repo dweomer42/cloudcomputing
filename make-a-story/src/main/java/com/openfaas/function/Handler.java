@@ -99,6 +99,12 @@ public class Handler extends com.openfaas.model.AbstractHandler {
       statement.executeUpdate();
 
     statement.close();
+    HttpClient client = HttpClient.newHttpClient();
+    HttpRequest request = HttpRequest.newBuilder()
+    .uri(URI.create("http://gateway/function/email-users"))
+    .POST(HttpRequest.BodyPublishers.noBody())
+    .build();
+    client.send(request, HttpResponse.BodyHandlers.ofString());
   }
 
     public IResponse Handle(IRequest req){
