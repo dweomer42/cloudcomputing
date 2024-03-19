@@ -101,13 +101,9 @@ public class Handler extends com.openfaas.model.AbstractHandler
             }
             };
 
-try{
+
              Session session = Session.getInstance(properties, authenticator);
-}
-catch(Exception e)
-{
-    res.setBody(e.getMessage());
-}
+
       
         List<Story> stories = new ArrayList<Story>();
         List<User> users = new ArrayList<User>();
