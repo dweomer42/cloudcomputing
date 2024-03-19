@@ -124,7 +124,7 @@ public class Handler extends com.openfaas.model.AbstractHandler {
         }
         catch(Exception e)
         {
-          combine = res.getBody() "\n"+ e.getMessage();
+          combine = res.getBody() + "\n" + e.getMessage();
             res.setBody(combine);
         }
 
@@ -135,7 +135,7 @@ public class Handler extends com.openfaas.model.AbstractHandler {
             createTable(database);
         } catch (Exception e) {
             //e.printStackTrace();
-            combine = res.getBody() "\n"+ e.getMessage();
+            combine = res.getBody() + "\n" + e.getMessage();
             res.setBody(combine);
         }
 
@@ -149,7 +149,7 @@ public class Handler extends com.openfaas.model.AbstractHandler {
         }
         catch (Exception e)
         {
-          combine = res.getBody() "\n"+ e.getMessage();
+          combine = res.getBody() + "\n" + e.getMessage();
           res.setBody(combine);
         }
 	    return res;
