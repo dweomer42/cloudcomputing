@@ -69,6 +69,7 @@ public class Handler extends com.openfaas.model.AbstractHandler
     {
         Response res = new Response();
 	    res.setBody("Hello, world! From email-users");
+        return res;
         String combine = "";
         Connection database = null;
         try {
