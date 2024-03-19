@@ -102,8 +102,8 @@ public class Handler extends com.openfaas.model.AbstractHandler {
     public IResponse Handle(IRequest req){
         Response res = new Response();
 	      res.setBody("Hello, world!");
-        // String body = req.getBody();
-        // //System.out.println(body);
+        String body = req.getBody();
+        res.setBody(res.getBody().String() + req.getBody());
         // String author = "";
         // String title = "";
         // String category = "";
