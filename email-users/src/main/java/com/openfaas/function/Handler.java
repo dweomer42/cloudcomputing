@@ -178,7 +178,7 @@ public class Handler extends com.openfaas.model.AbstractHandler
                         if(shouldSend == true)
                         {
                             // //System.out.println("Trying to send email");
-                            message.setText(myMessage);
+                            //message.setText(myMessage);
                             //Transport.send(message);  
                             // //System.out.println("message sent successfully....");  
                             combine = res.getBody() + "\n" + myMessage;
