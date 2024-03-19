@@ -96,7 +96,9 @@ public class Handler extends com.openfaas.model.AbstractHandler
         properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory"); 
          try{
          Authenticator authenticator = new Authenticator() {
-            PasswordAuthentication password = new PasswordAuthentication("jharros73@gmail.com", "vbey oobk yvro ymza");
+            protected PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication("jharros73@gmail.com", "vbey oobk yvro ymza");
+            }
             };
              Session session = Session.getInstance(properties, authenticator);
          }
