@@ -34,7 +34,7 @@ public class Handler extends com.openfaas.model.AbstractHandler {
       // Define JDBC driver
 
 
-        System.setProperty("jdbc.drivers", "com.mysql.jdbc.Driver");
+        //System.setProperty("jdbc.drivers", "com.mysql.jdbc.Driver");
         // Setting standard system property jdbc.drivers
         // is an alternative to loading the driver manually
         // by calling Class.forName()
