@@ -6,7 +6,7 @@ functions:
   email-users:
     lang: java11
     handler: ./email-users
-    image: email-users:latest
+    image: sc20jh/email-users:latest
 dashboard:
   enabled: true
   publicURL: https://dashboard.example.com
