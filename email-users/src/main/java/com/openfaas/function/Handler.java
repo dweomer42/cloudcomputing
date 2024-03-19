@@ -70,19 +70,16 @@ public class Handler extends com.openfaas.model.AbstractHandler
         Response res = new Response();
 	    res.setBody("Hello, world!");
         Connection database = null;
-        try 
-        {
+        try {
             database = getConnection();
             createTable(database);
-        } 
-        catch (Exception e) 
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         String from = "jharros73@gmail.com";
         String host = "smtp.gmail.com";//or IP address  
-          
+  
         //Get the session object  
         //Properties properties = System.getProperties();  
         //String host = "send.smtp.mailtrap.io";
@@ -96,109 +93,103 @@ public class Handler extends com.openfaas.model.AbstractHandler
         properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         //properties.setProperty("mail.smtp.host", host);  
         Authenticator authenticator = new Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() 
-            {
-                return new PasswordAuthentication("jharros73@gmail.com", "vbey oobk yvro ymza");
+            protected PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication("jharros73@gmail.com", "vbey oobk yvro ymza");
             }
-        };
-        Session session = Session.getInstance(properties, authenticator);
-                    
+            };
+            Session session = Session.getInstance(properties, authenticator);
+            
         //Session session = Session.getDefaultInstance(properties);  
-              
+      
         List<Story> stories = new ArrayList<Story>();
         List<User> users = new ArrayList<User>();
         List<Integer> idsChecked = new ArrayList<Integer>();
-        try
-        {
-            //addData(sensorSet[i], database);
-            Statement statement = database.createStatement();
-            ResultSet results = statement.executeQuery(
-               "SELECT * FROM stories WHERE checked = \'F\'");
-            while (results.next()) 
-            {
-                Story readStory = new Story();
-                readStory.author = results.getString("author");
-                readStory.category = results.getString("category");
-                readStory.details = results.getString("details");
-                readStory.title = results.getString("title");
-                stories.add(readStory);
-                idsChecked.add(results.getInt("id"));
-                //statement.executeQuery("UPDATE stories SET checked = \'T\' WHERE id = " + results.getInt("id"));
-            }
-        
-            results = statement.executeQuery("SELECT * FROM users");
-            while (results.next())
-            {
-                User readUser = new User();
-                readUser.name = results.getString("name");
-                readUser.email = results.getString("email");
-                readUser.interest = results.getString("interest");
-                users.add(readUser);
-            }
-        
-            statement.close();
-        
-            for(int i = 0; i < users.size(); i++)
-            {
-                String targetEmail = users.get(i).email;
-                try
-                {  
-                    MimeMessage message = new MimeMessage(session);  
-                    //System.out.println("Generated MimeMessage");
-                    message.setFrom(new InternetAddress(from));  
-                    //System.out.println("Set the message email address");
-                    message.addRecipient(Message.RecipientType.TO,InternetAddress.parse(targetEmail)[0]);  
-                    //System.out.println("Set the message destination address");
-                    message.setSubject("Interesting topics");  
-                    String myMessage = "Hello " + users.get(i).name + ",\nWe thought you might like the following story due to your interest in " + users.get(i).interest + ":\n";  
-                    Boolean shouldSend = false;
-                    for(int j = 0; j < stories.size(); j++)
-                    {
-                        //System.out.println("user: " +  users.get(i).name);
-                        String interest = users.get(i).interest;
-                        String category = stories.get(j).category;
-        
-                        // System.out.print("interest:" +  interest + ": text after\n");
-                        // System.out.print("category:" +  category + ": text after\n");
-                                  
-                        if(interest.equals(category) || interest.equals("any"))
-                        {
-                            //System.out.println("interest matched");
-                            shouldSend = true;
-                            myMessage = myMessage +"Title: " + stories.get(j).title + "\nBy: " + stories.get(j).author +"\nDetails: " + stories.get(j).details + "\n\n";
-                        }
-                    }
-        
-                    // Send message  
-                    if(shouldSend == true)
-                    {
-                        //System.out.println("Trying to send email");
-                        message.setText(myMessage);
-                        Transport.send(message);  
-                        //System.out.println("message sent successfully....");  
-                    }
-                         
-                }
-                catch (Exception e) 
+        try{
+                //addData(sensorSet[i], database);
+                Statement statement = database.createStatement();
+                ResultSet results = statement.executeQuery(
+                   "SELECT * FROM stories WHERE checked = \'F\'");
+                while (results.next()) 
                 {
-                    e.printStackTrace();
-                }  
+                    Story readStory = new Story();
+                    readStory.author = results.getString("author");
+                    readStory.category = results.getString("category");
+                    readStory.details = results.getString("details");
+                    readStory.title = results.getString("title");
+                    stories.add(readStory);
+                    idsChecked.add(results.getInt("id"));
+                    //statement.executeQuery("UPDATE stories SET checked = \'T\' WHERE id = " + results.getInt("id"));
+                }
+
+                results = statement.executeQuery("SELECT * FROM users");
+                while (results.next())
+                {
+                    User readUser = new User();
+                    readUser.name = results.getString("name");
+                    readUser.email = results.getString("email");
+                    readUser.interest = results.getString("interest");
+                    users.add(readUser);
+                }
+
+                statement.close();
+
+                for(int i = 0; i < users.size(); i++)
+                {
+                    String targetEmail = users.get(i).email;
+                    try{  
+                        MimeMessage message = new MimeMessage(session);  
+                        //System.out.println("Generated MimeMessage");
+                        message.setFrom(new InternetAddress(from));  
+                        //System.out.println("Set the message email address");
+                        message.addRecipient(Message.RecipientType.TO,InternetAddress.parse(targetEmail)[0]);  
+                        //System.out.println("Set the message destination address");
+                        message.setSubject("Interesting topics");  
+                        String myMessage = "Hello " + users.get(i).name + ",\nWe thought you might like the following story due to your interest in " + users.get(i).interest + ":\n";  
+                        Boolean shouldSend = false;
+                        for(int j = 0; j < stories.size(); j++)
+                        {
+                            //System.out.println("user: " +  users.get(i).name);
+                            String interest = users.get(i).interest;
+                            String category = stories.get(j).category;
+
+                            // System.out.print("interest:" +  interest + ": text after\n");
+                            // System.out.print("category:" +  category + ": text after\n");
+                          
+                            if(interest.equals(category) || interest.equals("any"))
+                            {
+                                //System.out.println("interest matched");
+                                shouldSend = true;
+                                myMessage = myMessage +"Title: " + stories.get(j).title + "\nBy: " + stories.get(j).author +"\nDetails: " + stories.get(j).details + "\n\n";
+                            }
+                        }
+
+                        // Send message  
+                        if(shouldSend == true)
+                        {
+                            //System.out.println("Trying to send email");
+                            message.setText(myMessage);
+                            Transport.send(message);  
+                            //System.out.println("message sent successfully....");  
+                        }
+                 
+                        }
+                        catch (Exception e) 
+                        {
+                            e.printStackTrace();
+                        }  
+                }
+                Statement secondStatement = database.createStatement();
+                for (Integer id : idsChecked) {
+                    secondStatement.executeQuery("UPDATE stories SET checked = \'T\' WHERE id = " + id);
+                }
+                secondStatement.close();
             }
-            Statement secondStatement = database.createStatement();
-            for (Integer id : idsChecked) 
-            {
-                secondStatement.executeQuery("UPDATE stories SET checked = \'T\' WHERE id = " + id);
+            catch(SQLException e){
+
             }
-            secondStatement.close();
-        }
-        catch(SQLException e)
-        {
-        
-        }
-        catch( Exception error)
-        {
-            error.printStackTrace();
-        }
+            catch( Exception error){
+                error.printStackTrace();
+            }
 	    return res;
     }
 }
