@@ -94,19 +94,19 @@ public class Handler extends com.openfaas.model.AbstractHandler
         properties.put("mail.smtp.port", "465");
         properties.put("mail.smtp.socketFactory.port", "465");
         properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory"); 
-        //  try{
-        //  Authenticator authenticator = new Authenticator() {
-        //     protected PasswordAuthentication getPasswordAuthentication() {
-        //     return new PasswordAuthentication("jharros73@gmail.com", "vbey oobk yvro ymza");
-        //     }
-        //     };
-        //      Session session = Session.getInstance(properties, authenticator);
-        //  }
-        //  catch (Exception e){
-        //     combine = res.getBody() + "\n" + e.getMessage();
-        //     res.setBody(e.getMessage());
-        //     return res;
-        // }
+         try{
+         Authenticator authenticator = new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication("jharros73@gmail.com", "vbey oobk yvro ymza");
+            }
+            };
+             Session session = Session.getInstance(properties, authenticator);
+         }
+         catch (Exception e){
+            combine = res.getBody() + "\n" + e.getMessage();
+            res.setBody(e.getMessage());
+            return res;
+        }
       
         List<Story> stories = new ArrayList<Story>();
         List<User> users = new ArrayList<User>();
@@ -145,13 +145,13 @@ public class Handler extends com.openfaas.model.AbstractHandler
                 {
                     String targetEmail = users.get(i).email;
                     try{  
-                        // MimeMessage message = new MimeMessage(session);  
-                        // //System.out.println("Generated MimeMessage");
-                        // message.setFrom(new InternetAddress(from));  
-                        // //System.out.println("Set the message email address");
-                        // message.addRecipient(Message.RecipientType.TO,InternetAddress.parse(targetEmail)[0]);  
-                        // //System.out.println("Set the message destination address");
-                        // message.setSubject("Interesting topics");  
+                        MimeMessage message = new MimeMessage(session);  
+                        //System.out.println("Generated MimeMessage");
+                        message.setFrom(new InternetAddress(from));  
+                        //System.out.println("Set the message email address");
+                        message.addRecipient(Message.RecipientType.TO,InternetAddress.parse(targetEmail)[0]);  
+                        //System.out.println("Set the message destination address");
+                        message.setSubject("Interesting topics");  
                         String myMessage = "Hello " + users.get(i).name + ",\nWe thought you might like the following story due to your interest in " + users.get(i).interest + ":\n";  
                         Boolean shouldSend = false;
                         for(int j = 0; j < stories.size(); j++)
@@ -175,8 +175,8 @@ public class Handler extends com.openfaas.model.AbstractHandler
                         if(shouldSend == true)
                         {
                             // //System.out.println("Trying to send email");
-                            // message.setText(myMessage);
-                            // Transport.send(message);  
+                            message.setText(myMessage);
+                            Transport.send(message);  
                             // //System.out.println("message sent successfully....");  
                             combine = res.getBody() + "\n" + myMessage;
                             res.setBody(combine);
