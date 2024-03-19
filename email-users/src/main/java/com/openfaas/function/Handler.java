@@ -68,7 +68,6 @@ public class Handler extends com.openfaas.model.AbstractHandler
     public IResponse Handle(IRequest req) 
     {
         Response res = new Response();
-        try{
 	    res.setBody("Hello, world! From email-users");
         String combine = "";
         Connection database = null;
@@ -81,27 +80,27 @@ public class Handler extends com.openfaas.model.AbstractHandler
             return res;
         }
 
-        String from = "jharros73@gmail.com";
-        String host = "smtp.gmail.com";//or IP address  
+        // String from = "jharros73@gmail.com";
+        // String host = "smtp.gmail.com";//or IP address  
   
-        //Get the session object  
-        //Properties properties = System.getProperties();  
-        //String host = "send.smtp.mailtrap.io";
-        //configure Mailtrap's SMTP server details
-        Properties properties = new Properties();
-        properties.put("mail.smtp.auth", "true");
-        //properties.put("mail.smtp.starttls.enable", "true");
-        properties.put("mail.smtp.host", host);
-        properties.put("mail.smtp.port", "465");
-        properties.put("mail.smtp.socketFactory.port", "465");
-        properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-        //properties.setProperty("mail.smtp.host", host);  
-        Authenticator authenticator = new Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-            return new PasswordAuthentication("jharros73@gmail.com", "vbey oobk yvro ymza");
-            }
-            };
-            Session session = Session.getInstance(properties, authenticator);
+        // //Get the session object  
+        // //Properties properties = System.getProperties();  
+        // //String host = "send.smtp.mailtrap.io";
+        // //configure Mailtrap's SMTP server details
+        // Properties properties = new Properties();
+        // properties.put("mail.smtp.auth", "true");
+        // //properties.put("mail.smtp.starttls.enable", "true");
+        // properties.put("mail.smtp.host", host);
+        // properties.put("mail.smtp.port", "465");
+        // properties.put("mail.smtp.socketFactory.port", "465");
+        // properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        // //properties.setProperty("mail.smtp.host", host);  
+        // Authenticator authenticator = new Authenticator() {
+        //     protected PasswordAuthentication getPasswordAuthentication() {
+        //     return new PasswordAuthentication("jharros73@gmail.com", "vbey oobk yvro ymza");
+        //     }
+        //     };
+        //     Session session = Session.getInstance(properties, authenticator);
             
         //Session session = Session.getDefaultInstance(properties);  
       
@@ -142,13 +141,13 @@ public class Handler extends com.openfaas.model.AbstractHandler
                 {
                     String targetEmail = users.get(i).email;
                     try{  
-                        MimeMessage message = new MimeMessage(session);  
-                        //System.out.println("Generated MimeMessage");
-                        message.setFrom(new InternetAddress(from));  
-                        //System.out.println("Set the message email address");
-                        message.addRecipient(Message.RecipientType.TO,InternetAddress.parse(targetEmail)[0]);  
-                        //System.out.println("Set the message destination address");
-                        message.setSubject("Interesting topics");  
+                        // MimeMessage message = new MimeMessage(session);  
+                        // //System.out.println("Generated MimeMessage");
+                        // message.setFrom(new InternetAddress(from));  
+                        // //System.out.println("Set the message email address");
+                        // message.addRecipient(Message.RecipientType.TO,InternetAddress.parse(targetEmail)[0]);  
+                        // //System.out.println("Set the message destination address");
+                        // message.setSubject("Interesting topics");  
                         String myMessage = "Hello " + users.get(i).name + ",\nWe thought you might like the following story due to your interest in " + users.get(i).interest + ":\n";  
                         Boolean shouldSend = false;
                         for(int j = 0; j < stories.size(); j++)
@@ -171,10 +170,12 @@ public class Handler extends com.openfaas.model.AbstractHandler
                         // Send message  
                         if(shouldSend == true)
                         {
-                            //System.out.println("Trying to send email");
-                            message.setText(myMessage);
-                            Transport.send(message);  
-                            //System.out.println("message sent successfully....");  
+                            // //System.out.println("Trying to send email");
+                            // message.setText(myMessage);
+                            // Transport.send(message);  
+                            // //System.out.println("message sent successfully....");  
+                            combine = res.getBody() + "\n" + myMessage;
+                            res.setBody(combine);
                         }
                  
                         }
@@ -204,11 +205,5 @@ public class Handler extends com.openfaas.model.AbstractHandler
 
             }
 	    return res;
-        }
-        catch (Exception e)
-        {
-            res.setBody(res.getBody() + e.getMessage());
-            return res;
-        }
     }
 }
