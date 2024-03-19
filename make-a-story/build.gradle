@@ -14,7 +14,7 @@ dependencies {
     implementation files('mssql-jdbc-12.6.1.jre11.jar')
 
 
-    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.google.code.gson:gson:2.8.5'
 
 
     // SQL driver

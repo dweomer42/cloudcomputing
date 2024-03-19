@@ -8,8 +8,8 @@ import com.openfaas.model.Response;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.io.IOException;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
+import com.google.gson.*;
+
 
 class Story
 {
@@ -17,7 +17,6 @@ class Story
     public String author;
     public String category;
     public String details;
-    public LocalDateTime timestamp;
 }
 
 public class Handler extends com.openfaas.model.AbstractHandler {
@@ -82,7 +81,7 @@ public class Handler extends com.openfaas.model.AbstractHandler {
     String author = newStory.author;
     String category = newStory.category;
     String details = newStory.details;
-    LocalDateTime timestamp = newStory.timestamp;
+    LocalDateTime timestamp = LocalDateTime.now();
 
     PreparedStatement statement =
      database.prepareStatement("INSERT INTO stories(title,author,category,details,checked,timestamp) VALUES(?,?,?,?,?,?)");
@@ -104,7 +103,7 @@ public class Handler extends com.openfaas.model.AbstractHandler {
         Response res = new Response();
 	      res.setBody("Hello, world!");
         String body = req.getBody();
-        System.out.println(body);
+        //System.out.println(body);
         String author = "";
         String title = "";
         String category = "";
@@ -112,16 +111,19 @@ public class Handler extends com.openfaas.model.AbstractHandler {
         try
         {
             System.err.println("got in");
-            JsonObject jobj = new Gson().fromJson(body, JsonObject.class);
-            System.out.println("read jobj");
-            author = jobj.get("author").getAsString();
-            title = jobj.get("title").getAsString();
-            category = jobj.get("category").getAsString();
-            details = jobj.get("details").getAsString();
+            Gson gson = new Gson();
+            Story newStory = gson.fromJson(req.getBody(), Story.class);
+            // JsonObject jobj = gson.fromJson(req.getBody(), JsonObject.class);
+            System.err.println("read jobj");
+            // author = jobj.get("author").getAsString();
+            // title = jobj.get("title").getAsString();
+            // category = jobj.get("category").getAsString();
+            // details = jobj.get("details").getAsString();
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            //e.printStackTrace();
+            System.err.println("Failed to read json");
         }
 
 
@@ -133,13 +135,12 @@ public class Handler extends com.openfaas.model.AbstractHandler {
             e.printStackTrace();
 
         }
-        LocalDateTime timestamp = LocalDateTime.now();
-        Story newStory = new Story();
-        newStory.title = title;
-        newStory.author = author;
-        newStory.category = category;
-        newStory.details = details;
-        newStory.timestamp = timestamp;
+
+        // newStory.title = title;
+        // newStory.author = author;
+        // newStory.category = category;
+        // newStory.details = details;
+        res.setBody(newStory.title);
         try{
             addData(newStory, database);
         }
