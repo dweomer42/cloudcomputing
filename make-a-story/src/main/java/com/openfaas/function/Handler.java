@@ -128,7 +128,7 @@ public class Handler extends com.openfaas.model.AbstractHandler {
           res.setBody(combine);
         }
 
-
+        Connection database = null;
         // Connection database = null;
         try {
             database = getConnection();
