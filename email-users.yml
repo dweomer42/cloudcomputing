@@ -7,4 +7,9 @@ functions:
     lang: java11
     handler: ./email-users
     image: email-users:latest
-
+dashboard:
+  enabled: true
+  publicURL: https://dashboard.example.com
+  # Name of signing key secret for sessions.
+  # Can be left blank for development deployments.
+  signingKeySecret: "dashboard-jwt

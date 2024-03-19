@@ -7,5 +7,10 @@ functions:
     lang: java11
     handler: ./make-a-story
     image: sc20jh/make-a-story:latest
-
+dashboard:
+  enabled: true
+  publicURL: https://dashboard.example.com
+  # Name of signing key secret for sessions.
+  # Can be left blank for development deployments.
+  signingKeySecret: "dashboard-jwt
 
