@@ -101,7 +101,7 @@ public class Handler extends com.openfaas.model.AbstractHandler
             return new PasswordAuthentication("jharros73@gmail.com", "vbey oobk yvro ymza");
             }
             };
-        //     Session session = Session.getInstance(properties, authenticator);
+             Session session = Session.getInstance(properties, authenticator);
          }
          catch (Exception e){
             combine = res.getBody() + "\n" + e.getMessage();
