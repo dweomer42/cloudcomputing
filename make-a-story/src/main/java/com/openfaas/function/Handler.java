@@ -105,10 +105,16 @@ public class Handler extends com.openfaas.model.AbstractHandler {
     {
       HttpClient client = HttpClient.newHttpClient();
       HttpRequest request = HttpRequest.newBuilder()
-      .uri(URI.create("http://127.0.0.1:8080/function/email-users"))
+      .uri(URI.create("http://gateway:8080/function/email-users"))
       .POST(HttpRequest.BodyPublishers.noBody())
       .build();
-      client.send(request, HttpResponse.BodyHandlers.ofString());
+      
+      client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
+      request = HttpRequest.newBuilder()
+      .uri(URI.create("http://gateway:8080/function/generate-summary"))
+      .POST(HttpRequest.BodyPublishers.noBody())
+      .build();
+      client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
     }
     catch (Exception e)
     {
