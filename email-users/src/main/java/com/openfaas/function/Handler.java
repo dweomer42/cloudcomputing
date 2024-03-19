@@ -95,20 +95,20 @@ public class Handler extends com.openfaas.model.AbstractHandler
         properties.put("mail.smtp.socketFactory.port", "465");
         properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory"); 
         Authenticator authenticator = null;
-         try{authenticator = new Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-            return new PasswordAuthentication("jharros73@gmail.com", "vbey oobk yvro ymza");
-            }
-            };
-        }
-        catch(Exception e)
-        {
-            combine = res.getBody() + "\n" + e.getMessage();
-            res.setBody(combine);
-            return res;
-        }
+        //  try{authenticator = new Authenticator() {
+        //     protected PasswordAuthentication getPasswordAuthentication() {
+        //     return new PasswordAuthentication("jharros73@gmail.com", "vbey oobk yvro ymza");
+        //     }
+        //     };
+        // }
+        // catch(Exception e)
+        // {
+        //     combine = res.getBody() + "\n" + e.getMessage();
+        //     res.setBody(combine);
+        //     return res;
+        // }
 
-             Session session = Session.getInstance(properties, authenticator);
+        //      Session session = Session.getInstance(properties, authenticator);
 
       
         List<Story> stories = new ArrayList<Story>();
