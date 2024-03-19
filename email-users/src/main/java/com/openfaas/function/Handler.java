@@ -68,6 +68,7 @@ public class Handler extends com.openfaas.model.AbstractHandler
     public IResponse Handle(IRequest req) 
     {
         Response res = new Response();
+        try{
 	    res.setBody("Hello, world! From email-users");
         String combine = "";
         Connection database = null;
@@ -203,5 +204,10 @@ public class Handler extends com.openfaas.model.AbstractHandler
 
             }
 	    return res;
+        }
+        catch (Exception e)
+        {
+            res.setBody(res.getBody() + e.getMessage());
+        }
     }
 }
