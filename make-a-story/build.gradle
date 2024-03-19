@@ -39,6 +39,7 @@ dependencies {
 
     compile 'com.openfaas:model:0.1.1'
     compile 'com.openfaas:entrypoint:0.1.0'
+    compile 'com.microsoft.sqlserver:mssql-jdbc:12.6.1.jre11'
 }
 
 // In this section you declare where to find the dependencies of your project
