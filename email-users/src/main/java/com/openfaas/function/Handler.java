@@ -18,6 +18,14 @@ class User
     public String interest;
 }
 
+class Story
+{
+    public String title;
+    public String author;
+    public String category;
+    public String details;
+}
+
 public class Handler extends com.openfaas.model.AbstractHandler 
 {
 
