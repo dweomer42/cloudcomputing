@@ -105,29 +105,30 @@ public class Handler extends com.openfaas.model.AbstractHandler {
         String body = req.getBody();
         String combine = res.getBody() + req.getBody();
         res.setBody(combine);
-        // String author = "";
-        // String title = "";
-        // String category = "";
-        // String details = "";
-        // Story newStory = new Story();
-        // try
-        // {
-        //     System.err.println("got in");
-        //     Gson gson = new Gson();
-        //     newStory = gson.fromJson(req.getBody(), Story.class);
-        //     // JsonObject jobj = gson.fromJson(req.getBody(), JsonObject.class);
-        //     System.err.println("read jobj");
-        //     // author = jobj.get("author").getAsString();
-        //     // title = jobj.get("title").getAsString();
-        //     // category = jobj.get("category").getAsString();
-        //     // details = jobj.get("details").getAsString();
-        // }
-        // catch (Exception e)
-        // {
-        //     //e.printStackTrace();
-        //     System.err.println("Failed to read json");
-        //     res.setBody("Failed to read json");
-        // }
+        String author = "";
+        String title = "";
+        String category = "";
+        String details = "";
+        Story newStory = new Story();
+        try
+        {
+            System.err.println("got in");
+            Gson gson = new Gson();
+            newStory = gson.fromJson(req.getBody(), Story.class);
+            // JsonObject jobj = gson.fromJson(req.getBody(), JsonObject.class);
+            System.err.println("read jobj");
+            // author = jobj.get("author").getAsString();
+            // title = jobj.get("title").getAsString();
+            // category = jobj.get("category").getAsString();
+            // details = jobj.get("details").getAsString();
+        }
+        catch (Exception e)
+        {
+            //e.printStackTrace();
+            String errorStr = ExceptionUtils.getStackTrace(e);
+            //System.err.println("Failed to read json");
+            res.setBody(res.getBody() + "\nFailed to read json:\n" + errorStr);
+        }
 
 
         // Connection database = null;
