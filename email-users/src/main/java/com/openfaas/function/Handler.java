@@ -80,21 +80,21 @@ public class Handler extends com.openfaas.model.AbstractHandler
             return res;
         }
 
-        // String from = "jharros73@gmail.com";
-        // String host = "smtp.gmail.com";//or IP address  
+        String from = "jharros73@gmail.com";
+        String host = "smtp.gmail.com";//or IP address  
   
         // //Get the session object  
         // //Properties properties = System.getProperties();  
         // //String host = "send.smtp.mailtrap.io";
         // //configure Mailtrap's SMTP server details
-        // Properties properties = new Properties();
-        // properties.put("mail.smtp.auth", "true");
-        // //properties.put("mail.smtp.starttls.enable", "true");
-        // properties.put("mail.smtp.host", host);
-        // properties.put("mail.smtp.port", "465");
-        // properties.put("mail.smtp.socketFactory.port", "465");
-        // properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-        // //properties.setProperty("mail.smtp.host", host);  
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth", "true");
+        //properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", host);
+        properties.put("mail.smtp.port", "465");
+        properties.put("mail.smtp.socketFactory.port", "465");
+        properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        //properties.setProperty("mail.smtp.host", host);  
         // Authenticator authenticator = new Authenticator() {
         //     protected PasswordAuthentication getPasswordAuthentication() {
         //     return new PasswordAuthentication("jharros73@gmail.com", "vbey oobk yvro ymza");
