@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.*;
 import jakarta.mail.*;  
-import jakarta.mail.util.*;
+import jakarta.mail.util.StreamProvider;
 import jakarta.mail.internet.*;  
 import jakarta.activation.*;  
 
