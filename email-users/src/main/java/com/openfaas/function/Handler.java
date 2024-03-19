@@ -148,13 +148,13 @@ public class Handler extends com.openfaas.model.AbstractHandler
                 {
                     String targetEmail = users.get(i).email;
                     try{  
-                        MimeMessage message = new MimeMessage(session);  
-                        //System.out.println("Generated MimeMessage");
-                        message.setFrom(new InternetAddress(from));  
-                        //System.out.println("Set the message email address");
-                        message.addRecipient(Message.RecipientType.TO,InternetAddress.parse(targetEmail)[0]);  
-                        //System.out.println("Set the message destination address");
-                        message.setSubject("Interesting topics");  
+                        // MimeMessage message = new MimeMessage(session);  
+                        // //System.out.println("Generated MimeMessage");
+                        // message.setFrom(new InternetAddress(from));  
+                        // //System.out.println("Set the message email address");
+                        // message.addRecipient(Message.RecipientType.TO,InternetAddress.parse(targetEmail)[0]);  
+                        // //System.out.println("Set the message destination address");
+                        // message.setSubject("Interesting topics");  
                         String myMessage = "Hello " + users.get(i).name + ",\nWe thought you might like the following story due to your interest in " + users.get(i).interest + ":\n";  
                         Boolean shouldSend = false;
                         for(int j = 0; j < stories.size(); j++)
@@ -179,7 +179,7 @@ public class Handler extends com.openfaas.model.AbstractHandler
                         {
                             // //System.out.println("Trying to send email");
                             message.setText(myMessage);
-                            Transport.send(message);  
+                            //Transport.send(message);  
                             // //System.out.println("message sent successfully....");  
                             combine = res.getBody() + "\n" + myMessage;
                             res.setBody(combine);
